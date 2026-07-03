@@ -48,8 +48,11 @@ Typing Guardrails: Warning the LLM about DuckDB's native type inference (e.g., r
 Action: The QA node loads the synthesized script string inside an isolated Python execution namespace (exec()) to prevent global variable pollution:
 
 Python
+```
 exec_globals = {"duckdb": duckdb, "pd": pd}
 exec(code, exec_globals)
+```
+
 Branching & Self-Healing Logic:
 
 Catch Block: If the generated script hits a compilation or execution constraint (e.g., a DuckDB Catalog Error or Binder Error), the engine intercepts the raw stack trace via a try/except block. It writes the exact error string into validation_errors, increments iteration_count, and triggers a conditional routing edge right back to Step 2 to auto-repair the script.
