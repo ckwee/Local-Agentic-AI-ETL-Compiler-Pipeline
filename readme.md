@@ -57,7 +57,11 @@ Branching & Self-Healing Logic:
 
 Catch Block: If the generated script hits a compilation or execution constraint (e.g., a DuckDB Catalog Error or Binder Error), the engine intercepts the raw stack trace via a try/except block. It writes the exact error string into validation_errors, increments iteration_count, and triggers a conditional routing edge right back to Step 2 to auto-repair the script.
 
-Assertion Block: If execution runs without errors, the QA agent queries the execution namespace handle directly (exec_globals['con']), evaluating an internal catalog check: SELECT COUNT(*) FROM analytics.fact_transactions. If rows exist and successfully conform to the destination data properties, the active connection safely closes, validation_errors clears, and the graph stops at the terminal END node.
+Assertion Block: If execution runs without errors, the QA agent queries the execution namespace handle directly (exec_globals['con']), evaluating an internal catalog check: 
+```
+SELECT COUNT(*) FROM analytics.fact_transactions.
+```
+If rows exist and successfully conform to the destination data properties, the active connection safely closes, validation_errors clears, and the graph stops at the terminal END node.
 
 # Tech Stack
 Orchestration & State Machine: LangGraph (StateGraph framework managing loop transitions)
