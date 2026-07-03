@@ -101,8 +101,10 @@ Right Panel (Orchestration Monitor): Exposes the step-by-step state machine upda
 # Strategic Operational Guardrails
 The Compiler Paradigm: Keeps infrastructure operational costs virtually flat. By isolating the LLM entirely to metadata parsing and logic scripting, the physical processing of gigabyte-to-terabyte scale matrices runs at raw C++ speeds inside DuckDB.
 
-### State Isolation: The execution sandbox decouples the database lifecycle from the agent runner lifecycle by forcing explicit connection variables (con), preventing hanging resource leaks.
+### State Isolation: 
+The execution sandbox decouples the database lifecycle from the agent runner lifecycle by forcing explicit connection variables (con), preventing hanging resource leaks.
 
-### Loop Deflection Guardrails: The state machine monitors the iteration_count. If the script fails to resolve formatting discrepancies within 3 iterations, the orchestrator triggers a fallback breakout, terminating the execution before wasting system resource cycles.
+### Loop Deflection Guardrails: 
+The state machine monitors the iteration_count. If the script fails to resolve formatting discrepancies within 3 iterations, the orchestrator triggers a fallback breakout, terminating the execution before wasting system resource cycles.
 
 📝 License
